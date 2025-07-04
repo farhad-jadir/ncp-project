@@ -1,0 +1,88 @@
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { FaPlus, FaBars, FaTimes } from "react-icons/fa";
+
+const navLinks = [
+  { name: "About", path: "/about" },
+  { name: "Vision", path: "/vision" },
+  { name: "Mission", path: "/mission" },
+  { name: "Works", path: "/works" },
+  { name: "History", path: "/history" },
+];
+
+export default function Navbar() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  return (
+    <nav className="bg-blue-600 text-white shadow-md fixed w-full z-20">
+      <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+        {/* Left: Logo + Title (link to home) */}
+        <Link to="/" className="flex items-center space-x-2">
+          <img
+            src="/images/ncp.png"
+            alt="NCP Logo"
+            className="w-10 h-10 rounded-full border-2 border-white"
+          />
+          <div className="leading-tight">
+            <span className="text-sm md:text-lg font-semibold block">
+              জাতীয় নাগরিক পার্টি (NCP)
+            </span>
+            <p className="text-xs md:text-sm px-4">বাঘারপাড়া উপজেলা, যশোর</p>
+          </div>
+        </Link>
+
+        {/* Center: Desktop Nav Links */}
+        <ul className="hidden md:flex space-x-6 font-semibold">
+          {navLinks.map((link) => (
+            <li key={link.name}>
+              <Link
+                to={link.path}
+                className="hover:underline hover:text-white transition"
+              >
+                {link.name}
+              </Link>
+            </li>
+          ))}
+        </ul>
+
+        {/* Right: Join Icon + Hamburger */}
+        <div className="flex items-center space-x-4">
+          {/* Join Button (Always visible) */}
+          <Link
+            to="/join"
+            className="bg-green-600 hover:bg-green-700 text-white rounded-full p-2 border-2 border-white"
+          >
+            <FaPlus />
+          </Link>
+
+          {/* Mobile Menu Toggle */}
+          <button
+            className="md:hidden text-white text-xl"
+            onClick={() => setMenuOpen(!menuOpen)}
+          >
+            {menuOpen ? <FaTimes /> : <FaBars />}
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile Dropdown Menu */}
+      {menuOpen && (
+        <div className="md:hidden bg-blue-600 shadow-inner px-4 pb-4">
+          <ul className="flex flex-col space-y-2 font-medium">
+            {navLinks.map((link) => (
+              <li key={link.name}>
+                <Link
+                  to={link.path}
+                  onClick={() => setMenuOpen(false)}
+                  className="block py-2 text-white hover:underline"
+                >
+                  {link.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </nav>
+  );
+}
