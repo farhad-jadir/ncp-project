@@ -7,7 +7,7 @@ import Footer from "./SubPages/Footer"; // ঠিক path
 
 export default function Home() {
   return (
-    <div className="bg-blue-100 ">
+    <div className="bg-blue-100 py-12 ">
       {/* Hero Section */}
       <div className="max-w-7xl mx-auto px-4 py-10 flex flex-col md:flex-row items-center gap-10">
         <div className="md:w-1/2 text-center md:text-left">
