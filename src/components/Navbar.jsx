@@ -15,13 +15,13 @@ export default function Navbar() {
 
   return (
     <nav className="bg-blue-600 text-white shadow-md fixed w-full z-20">
-      <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+      <div className="max-w-8xl md:px-32 mx-auto px-4 py-3 flex items-center justify-between">
         {/* Left: Logo + Title (link to home) */}
         <Link to="/" className="flex items-center space-x-2">
           <img
             src="/images/ncp.png"
             alt="NCP Logo"
-            className="w-10 h-10 rounded-full border-2 border-white"
+            className="w-10 h-10 md:w-12  md:h-12 rounded-full border-2 border-white"
           />
           <div className="leading-tight">
             <span className="text-sm md:text-lg font-semibold block">
@@ -32,18 +32,29 @@ export default function Navbar() {
         </Link>
 
         {/* Center: Desktop Nav Links */}
-        <ul className="hidden md:flex space-x-6 font-semibold">
-          {navLinks.map((link) => (
-            <li key={link.name}>
-              <Link
-                to={link.path}
-                className="hover:underline hover:text-white transition"
-              >
-                {link.name}
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <ul className="hidden md:flex space-x-20 text-base md:text-xl font-semibold">
+  {navLinks.map((link) => (
+    <li key={link.name} className="group relative overflow-hidden rounded-md">
+      <Link
+        to={link.path}
+        className="relative inline-block px-4 py-2 group"
+      >
+        {/* Animated Background: starts orange, on hover deep red */}
+        <span className="absolute inset-0 bg-orange-500 group-hover:bg-red-900 scale-x-0 group-hover:scale-x-100 origin-left transition-all duration-500 ease-in-out z-0 rounded-md"></span>
+
+        {/* Text */}
+        <span className="relative z-10 text-white group-hover:text-gray-100 transition-colors duration-300 ease-in-out">
+          {link.name}
+        </span>
+
+        {/* Underline */}
+        <span className="absolute left-0 -bottom-1 h-0.5 bg-red-500 transition-all duration-300 w-0 group-hover:w-full z-10"></span>
+      </Link>
+    </li>
+  ))}
+</ul>
+
+
 
         {/* Right: Join Icon + Hamburger */}
         <div className="flex items-center space-x-4">

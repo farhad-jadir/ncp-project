@@ -1,7 +1,7 @@
 // src/pages/Home.jsx
 import { FaUserPlus, FaDonate, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import Formation from "./SubPages/Formation";
-import About from "./SubPages/About";
+import Aboutt from "./SubPages/Aboutt";
 import Footer from "./SubPages/Footer"; // ঠিক path
  // ← এটাকে ইম্পোর্ট করতে হবে
 
@@ -47,7 +47,7 @@ export default function Home() {
 
       {/* Formation Section */}
       <Formation />
-      <About />
+      <Aboutt />
       <Footer />
     </div>
   );

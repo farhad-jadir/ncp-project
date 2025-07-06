@@ -2,8 +2,9 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home"; // ← এখন আমরা Home.jsx ফাইল ব্যবহার করব
 
+
 // Dummy components for other routes
-const About = () => <div className="text-center mt-10 text-xl">📘 About Page</div>;
+import About from "./pages/About";
 const Vision = () => <div className="text-center mt-10 text-xl">🔭 Vision Page</div>;
 const Mission = () => <div className="text-center mt-10 text-xl">🎯 Mission Page</div>;
 const Works = () => <div className="text-center mt-10 text-xl">🛠️ Works Page</div>;

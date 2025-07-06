@@ -1,7 +1,7 @@
 import { FaCheckCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
-export default function About() {
+export default function Aboutt() {
   return (
     <section className="bg-white px-4 py-12 min-h-screen">
       <div className="max-w-7xl mx-auto flex flex-col-reverse lg:flex-row gap-10 items-start">
