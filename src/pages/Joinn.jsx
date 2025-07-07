@@ -39,15 +39,39 @@ export default function Join() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const submitData = new FormData();
-    for (let key in formData) {
-      submitData.append(key, formData[key]);
-    }
-
     try {
+      // Upload photo to Cloudinary
+      const imageData = new FormData();
+      imageData.append("file", formData.photo);
+      imageData.append("upload_preset", "ncp-un");
+      imageData.append("cloud_name", "dgqwnjsog");
+
+      const cloudRes = await fetch("https://api.cloudinary.com/v1_1/dgqwnjsog/image/upload", {
+        method: "POST",
+        body: imageData,
+      });
+
+      const cloudResult = await cloudRes.json();
+      const photoURL = cloudResult.secure_url;
+
+      // Prepare data to send to backend
+      const memberData = {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        dob: formData.dob,
+        district: formData.district,
+        idNumber: formData.idNumber,
+        membership: formData.membership,
+        photoURL: photoURL,
+      };
+
       const res = await fetch("http://localhost:5000/api/members", {
         method: "POST",
-        body: submitData,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(memberData),
       });
 
       const result = await res.json();
@@ -59,16 +83,16 @@ export default function Join() {
       }
     } catch (error) {
       console.error("Submit error:", error);
+      alert("❌ Something went wrong");
     }
   };
 
   return (
     <section className="min-h-screen bg-gray-100 py-12 px-4">
-      <div className="max-w-lg mx-auto bg-white shadow-xl rounded-xl p-8 space-y-6">
-        {/* Logo + Title */}
+      <div className="max-w-lg mx-auto bg-white mt-4 shadow-xl rounded-xl p-8 space-y-6">
         <div className="text-center">
           <img
-            src="/images/ncp-logo.png"
+            src="/images/nncp.png"
             alt="NCP Logo"
             className="w-20 h-20 mx-auto rounded-full shadow-md"
           />
@@ -76,9 +100,7 @@ export default function Join() {
           <p className="text-sm text-gray-500">Be part of the change you want to see</p>
         </div>
 
-        {/* Form */}
         <form className="space-y-4" onSubmit={handleSubmit}>
-          {/* Full Name */}
           <div className="flex items-center border rounded px-3 py-2">
             <FaUser className="text-gray-400 mr-2" />
             <input
@@ -92,7 +114,6 @@ export default function Join() {
             />
           </div>
 
-          {/* Email */}
           <div className="flex items-center border rounded px-3 py-2">
             <FaEnvelope className="text-gray-400 mr-2" />
             <input
@@ -106,7 +127,6 @@ export default function Join() {
             />
           </div>
 
-          {/* Phone Number */}
           <div className="flex items-center border rounded px-3 py-2">
             <FaPhone className="text-gray-400 mr-2" />
             <input
@@ -120,7 +140,6 @@ export default function Join() {
             />
           </div>
 
-          {/* Date of Birth */}
           <div className="flex items-center border rounded px-3 py-2">
             <FaCalendarAlt className="text-gray-400 mr-2" />
             <input
@@ -133,7 +152,6 @@ export default function Join() {
             />
           </div>
 
-          {/* Zila (District) */}
           <div className="flex items-center border rounded px-3 py-2">
             <FaMapMarkerAlt className="text-gray-400 mr-2" />
             <input
@@ -147,7 +165,6 @@ export default function Join() {
             />
           </div>
 
-          {/* ID Number */}
           <div className="flex items-center border rounded px-3 py-2">
             <FaIdCard className="text-gray-400 mr-2" />
             <input
@@ -161,7 +178,6 @@ export default function Join() {
             />
           </div>
 
-          {/* Membership Type */}
           <div className="flex items-center border rounded px-3 py-2">
             <FaFlag className="text-gray-400 mr-2" />
             <select
@@ -178,7 +194,6 @@ export default function Join() {
             </select>
           </div>
 
-          {/* Passport Photo Upload */}
           <div className="flex items-center border rounded px-3 py-2">
             <FaImage className="text-gray-400 mr-2" />
             <input
@@ -191,7 +206,6 @@ export default function Join() {
             />
           </div>
 
-          {/* Buttons */}
           <div className="flex justify-between gap-4 pt-4">
             <button
               type="submit"

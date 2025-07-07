@@ -8,6 +8,7 @@ const navLinks = [
   { name: "Mission", path: "/mission" },
   { name: "Works", path: "/works" },
   { name: "History", path: "/history" },
+  { name: "Member List", path: "/members" },
 ];
 
 export default function Navbar() {
@@ -21,7 +22,7 @@ export default function Navbar() {
           <img
             src="/images/ncp.png"
             alt="NCP Logo"
-            className="w-10 h-10 md:w-12  md:h-12 rounded-full border-2 border-white"
+            className="w-10 h-10 md:w-16  md:h-16 rounded-full border-2 border-white"
           />
           <div className="leading-tight">
             <span className="text-sm md:text-lg font-semibold block">
@@ -61,7 +62,7 @@ export default function Navbar() {
           {/* Join Button (Always visible) */}
           <Link
             to="/join"
-            className="bg-green-600 hover:bg-green-700 text-white rounded-full p-2 border-2 border-white"
+            className="bg-green-600 hover:bg-green-700 text-white rounded-full p-4 border-4 border-white"
           >
             <FaPlus />
           </Link>
