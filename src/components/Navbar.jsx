@@ -33,7 +33,7 @@ export default function Navbar() {
         </Link>
 
         {/* Center: Desktop Nav Links */}
-        <ul className="hidden md:flex space-x-20 text-base md:text-xl font-semibold">
+        <ul className="hidden md:flex space-x-12 text-base md:text-lg font-bold">
   {navLinks.map((link) => (
     <li key={link.name} className="group relative overflow-hidden rounded-md">
       <Link
