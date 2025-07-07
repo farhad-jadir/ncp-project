@@ -1,13 +1,13 @@
 // src/pages/Home.jsx
+import { Link } from "react-router-dom";
 import { FaUserPlus, FaDonate, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import Formation from "./SubPages/Formation";
 import Aboutt from "./SubPages/Aboutt";
-import Footer from "./SubPages/Footer"; // ঠিক path
- // ← এটাকে ইম্পোর্ট করতে হবে
+import Footer from "./SubPages/Footer";
 
 export default function Home() {
   return (
-    <div className="bg-blue-100 py-12 ">
+    <div className="bg-blue-100 py-12">
       {/* Hero Section */}
       <div className="max-w-7xl mx-auto px-4 py-10 flex flex-col md:flex-row items-center gap-10">
         <div className="md:w-1/2 text-center md:text-left">
@@ -20,10 +20,16 @@ export default function Home() {
             dedicated to eradicating corruption, fostering national unity, and ensuring progress
             for every citizen. Discover our vision for a better future.
           </p>
+
+          {/* ✅ Link used correctly */}
           <div className="mt-6 flex flex-wrap justify-center md:justify-start gap-4">
-            <button className="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-full flex items-center gap-2 font-semibold shadow-md">
+            <Link
+              to="/join"
+              className="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-full flex items-center gap-2 font-semibold shadow-md"
+            >
               <FaUserPlus /> Join Party
-            </button>
+            </Link>
+
             <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full flex items-center gap-2 font-semibold shadow-md">
               <FaDonate /> Donate
             </button>
@@ -45,7 +51,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Formation Section */}
+      {/* Other Sections */}
       <Formation />
       <Aboutt />
       <Footer />
