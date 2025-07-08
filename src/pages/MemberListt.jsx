@@ -5,7 +5,7 @@ export default function MemberList() {
   const [members, setMembers] = useState([]);
 
   useEffect(() => {
-    axios.get("https://ncp-project-backend.onrender.com")
+    axios.get("https://ncp-project-backend-2.onrender.com")
       .then(res => setMembers(res.data))
       .catch(err => {
         console.error("❌ Fetch error:", err);

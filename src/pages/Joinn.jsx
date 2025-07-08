@@ -66,7 +66,7 @@ export default function Join() {
         photoURL: photoURL,
       };
 
-      const res = await fetch("https://ncp-project-backend.onrender.com", {
+      const res = await fetch("https://ncp-project-backend-2.onrender.com", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
