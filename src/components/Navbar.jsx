@@ -62,7 +62,7 @@ export default function Navbar() {
           {/* Join Button (Always visible) */}
           <Link
             to="/join"
-            className="bg-green-600 hover:bg-green-700 text-white rounded-full p-4 border-4 border-white"
+            className="bg-green-600 hover:bg-green-700 text-white rounded-full md:p-4 p-2 border-4 border-white"
           >
             <FaPlus />
           </Link>
